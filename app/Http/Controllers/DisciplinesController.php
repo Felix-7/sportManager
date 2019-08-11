@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Students;
+use App\Discipline;
 use Illuminate\Http\Request;
 
-class StudentsController extends Controller
+class DisciplinesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +46,10 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Students  $students
+     * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function show(Students $students)
+    public function show(Discipline $discipline)
     {
         //
     }
@@ -52,10 +57,10 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Students  $students
+     * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function edit(Students $students)
+    public function edit(Discipline $discipline)
     {
         //
     }
@@ -64,10 +69,10 @@ class StudentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Students  $students
+     * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Request $request, Discipline $discipline)
     {
         //
     }
@@ -75,10 +80,10 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Students  $students
+     * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Students $students)
+    public function destroy(Discipline $discipline)
     {
         //
     }

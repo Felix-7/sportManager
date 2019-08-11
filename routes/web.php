@@ -11,8 +11,8 @@
 |
 */
 
-Route::view('/', 'welcome')->name('welcome');
-
+Route::get('/', 'HomeController@index')->name('home');
+Route::resource('disciplines', 'DisciplinesController');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();

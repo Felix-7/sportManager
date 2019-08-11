@@ -64,6 +64,7 @@
         </style>
     </head>
     <body>
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -82,14 +83,14 @@
             @if (Route::has('login'))
                 @auth
                 <div class="title m-b-md">
-                    Hi, {{ Auth::user()->name }}!
+                    {{$data}} {{ Auth::user()->name }}!
                 </div>
                 <div class="top-right links">
                     <a href="{{route('logout')}}">Logout</a>
                 </div>
                 <div class="links">
-                    <a href="{{route('welcome')}}">Messung</a>
-                    <a href="{{route('welcome')}}">Statistik</a>
+                    <a href="{{route('home')}}">Messung</a>
+                    <a href="{{route('home')}}">Statistik</a>
                 </div>
 
                 @else
@@ -103,6 +104,8 @@
                 @endauth
             @endif
             </div>
+
+
 
         </div>
     </body>

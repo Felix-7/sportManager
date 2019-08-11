@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $nr = rand(0, 4);
+        switch($nr){
+            case 0: $data = "Hi, "; break;
+            case 1: $data = "Hallo, "; break;
+            case 2: $data = "Willkommen, "; break;
+            case 3: $data = "Hey, "; break;
+            case 4: $data = "Guten Tag, "; break;
+            default: $data = "Hi, "; break;
+        }
+
+        return view('welcome', compact('data'));
     }
 }
