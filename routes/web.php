@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('disciplines', 'DisciplinesController');
+Route::view('/admin', 'admin.settings')->name('admin');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();

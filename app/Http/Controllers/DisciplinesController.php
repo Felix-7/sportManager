@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Discipline;
+use App\Student;
 use Illuminate\Http\Request;
 
 class DisciplinesController extends Controller
@@ -58,7 +59,9 @@ class DisciplinesController extends Controller
      */
     public function show(Discipline $discipline)
     {
-        return view('disciplines.show', compact('discipline'));
+        $groups = Student::select('group')->groupBy('group')->get();
+
+        return view('disciplines.show', compact('discipline', 'groups'));
     }
 
     /**
