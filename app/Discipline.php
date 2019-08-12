@@ -9,6 +9,7 @@ class Discipline extends Model
     protected $fillable = ['name', 'unit', 'best_high', 'active'];
 
     protected $attributes = [
+        'best_high' => 1,
         'active' => 1
     ];
 

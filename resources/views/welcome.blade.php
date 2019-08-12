@@ -89,7 +89,7 @@
                     <a href="{{route('logout')}}">Logout</a>
                 </div>
                 <div class="links">
-                    <a href="{{route('disciplines.index')}}">Messung</a>
+                    <a href="{{route('disciplines.index')}}">Messen</a>
                     <a href="{{route('home')}}">Statistik</a>
                 </div>
 

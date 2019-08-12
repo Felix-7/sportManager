@@ -31,7 +31,8 @@ class DisciplinesController extends Controller
      */
     public function create()
     {
-        return view('disciplines.create');
+        $discipline = new Discipline();
+        return view('disciplines.create', compact('discipline'));
     }
 
     /**
@@ -57,7 +58,7 @@ class DisciplinesController extends Controller
      */
     public function show(Discipline $discipline)
     {
-        //
+        return view('disciplines.show', compact('discipline'));
     }
 
     /**
@@ -68,7 +69,7 @@ class DisciplinesController extends Controller
      */
     public function edit(Discipline $discipline)
     {
-        //
+        return view('disciplines.edit', compact('discipline'));
     }
 
     /**
@@ -78,9 +79,11 @@ class DisciplinesController extends Controller
      * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Discipline $discipline)
+    public function update(Discipline $discipline)
     {
-        //
+        $discipline->update($this->validateRequest());
+
+        return redirect('disciplines/' . $discipline->id);
     }
 
     /**
