@@ -19,7 +19,9 @@ class DisciplinesController extends Controller
      */
     public function index()
     {
-        //
+        $disciplines = Discipline::all();
+
+        return view('disciplines.index', compact('disciplines'));
     }
 
     /**
@@ -29,7 +31,7 @@ class DisciplinesController extends Controller
      */
     public function create()
     {
-        //
+        return view('disciplines.create');
     }
 
     /**
@@ -38,9 +40,13 @@ class DisciplinesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+
+        $discipline = Discipline::create($this->validateRequest());
+
+
+        return redirect('disciplines');
     }
 
     /**
@@ -86,5 +92,15 @@ class DisciplinesController extends Controller
     public function destroy(Discipline $discipline)
     {
         //
+    }
+
+    private function validateRequest(){
+
+        return request()->validate([
+            'name' => 'required|min:3',
+            'unit' => 'required',
+            'active' => 'required',
+            'best_high' => 'required',
+        ]);
     }
 }

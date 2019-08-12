@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SportsManager</title>
+        <title>SportManager</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -89,7 +89,7 @@
                     <a href="{{route('logout')}}">Logout</a>
                 </div>
                 <div class="links">
-                    <a href="{{route('home')}}">Messung</a>
+                    <a href="{{route('disciplines.index')}}">Messung</a>
                     <a href="{{route('home')}}">Statistik</a>
                 </div>
 

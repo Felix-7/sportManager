@@ -18,7 +18,7 @@ class CreateDisciplinesTable extends Migration
             $table->string('name');
             $table->string('unit');
             $table->boolean('best_high');
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
