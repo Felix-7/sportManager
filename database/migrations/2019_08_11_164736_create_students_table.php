@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('teacher'); //ToDo ID oder Name?
             $table->boolean('active');
             $table->bigIncrements('id');
+            $table->integer('tempValue')->nullable();
             $table->timestamps();
         });
     }
