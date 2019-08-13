@@ -15,6 +15,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('disciplines', 'DisciplinesController');
 Route::view('/admin', 'admin.settings')->name('admin');
 
+Route::get('/disciplines/{discipline}/{group}', 'EntryController@startEntries')->name('entry.action');
+Route::get('/disciplines/{discipline}/{group}/{student}', 'EntryController@nextEntry')->name('entry.next');
+
 Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 

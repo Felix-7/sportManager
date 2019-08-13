@@ -9,7 +9,7 @@
     </ol>
 </nav>
 
-<div class="col-12 text-center py-3">
+<div class="title text-center">
     <h1>Gruppe für {{$discipline->name}} wählen</h1>
 </div>
 <div class="container">
@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{$group->group}}</h5>
-                        <a href="{{route('disciplines.show', ['discipline' => $discipline])}}" class="btn btn-success">Gruppe wählen</a>
+                        <a href="{{route('entry.action', ['discipline' => $discipline, 'group' => $group->group])}}" class="btn btn-success">Gruppe wählen</a>
                     </div>
                 </div>
                 @if($key % 2 == 1)
