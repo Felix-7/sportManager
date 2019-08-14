@@ -24,4 +24,9 @@ class Discipline extends Model
     {
         return $this->activeOptions()[$attribute];
     }
+
+    public function values()
+    {
+        return $this->hasMany(\App\Value::class);
+    }
 }

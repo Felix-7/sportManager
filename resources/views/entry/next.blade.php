@@ -20,15 +20,16 @@
     <form action="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'student'=>$i])}}" method="POST" enctype="multipart/form-data">
         <div class="form-row my-5">
             <div class="col-10">
-                <input type="text" class="form-control" placeholder="Wert" name="value">
+                <input type="text" class="form-control" placeholder="Wert" name="tempValue">
             </div>
             <div class="col-2">
                 <input type="text" class="form-control" value="{{$discipline->unit}}" disabled>
             </div>
+            <div class="text-warning">{{$errors->first('tempValue')}}</div>
         </div>
 
         <div class="container">
-            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Nächster Schüler</a>
+            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Nächster Schüler</a></button>
         </div>
         @csrf
     </form>
