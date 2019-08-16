@@ -29,7 +29,7 @@
         </div>
 
         <div class="container">
-            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Nächster Schüler</a></button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Nächster Schüler</button>
         </div>
         @csrf
     </form>

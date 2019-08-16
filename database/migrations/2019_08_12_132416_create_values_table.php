@@ -16,11 +16,11 @@ class CreateValuesTable extends Migration
         Schema::create('values', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('value');
-            $table->integer('discipline_id');
-            $table->integer('student_id');
+            $table->unsignedBigInteger('discipline_id');
+            $table->unsignedBigInteger('student_id');
             $table->string('class');
             $table->string('year');
-            $table->integer('teacher_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->dateTime('datetime');
             $table->timestamps();
         });

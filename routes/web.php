@@ -11,15 +11,16 @@
 |
 */
 
+Route::view('/', 'welcome')->name('main');
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('disciplines', 'DisciplinesController');
 Route::view('/admin', 'admin.settings')->name('admin');
 
 Route::get('/disciplines/{discipline}/{group}', 'EntryController@startEntries')->name('entry.action');
-
 Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}', 'EntryController@nextEntry')->name('entry.next');
-
 Route::get('/disciplines/{discipline}/{group}/summary', 'EntryController@nextEntry')->name('entry.summary'); //ToDO Route via /summary to finish inputs
+
+Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();

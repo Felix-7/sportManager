@@ -31,8 +31,14 @@
     </tbody>
 </table>
 
-
-
 <div class="container">
-    <a href="{{route('home')}}" role="button" class="btn btn-success btn-lg btn-block fixed-bottom py-3">Daten bestätigen</a>
+    <form action="{{route('entry.store', ['group'=>$group, 'discipline'=>$discipline->id])}}" method="POST" enctype="multipart/form-data">
+
+        @foreach($studentList as $key => $student)
+            <input type="hidden" name="e{{$key}}" value="{{$student->tempValue}}">
+        @endforeach
+
+        <button type="submit" class="btn btn-success btn-lg btn-block fixed-bottom py-3">Daten bestätigen</button>
+        @csrf
+    </form>
 </div>

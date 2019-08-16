@@ -13,14 +13,15 @@ class EntryController extends Controller
         return view('entry.action', compact('discipline', 'group'));
     }
 
-    public function nextEntry(Discipline $discipline, int $group, int $i, Request $request){
+    public function nextEntry(Discipline $discipline, int $group, int $i){
         $studentList = Student::students($group)->get();
         $count = count($studentList);
+        
         if($i != -1) {
             $studentList[$i]->update($this->validateEntry());
             if(++$i >= $count){
                 $studentList = Student::students($group)->get();
-                return view('entry.summary', compact('discipline', 'group', 'studentList'));
+                return view('entry.summary', compact( 'group','discipline', 'studentList', 'i'));
             }
             $student = $studentList[$i];
         }
@@ -31,7 +32,12 @@ class EntryController extends Controller
             }
             $student = $studentList[0];
         }
-        return view('entry.next', compact('discipline', 'group', 'i', 'student'));
+        return view('entry.next', compact('discipline','group', 'i', 'student'));
+    }
+
+    public function store(Request $request, int $group)
+    {
+        dd('Hi');
     }
 
     private function validateEntry(){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use App\Value;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,20 @@ class ValuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, int $group, int $disciplineId)
     {
-        //
+        $studentCount = Student::students($group)->get()->count();
+
+        for($i = 0; $i < $studentCount; $i++){
+            $getCur = "e" . $i;
+
+            if($request->$getCur != null){
+                Value::generateValue($request->$getCur, $group, $i, $disciplineId);
+            }
+        }
+
+        return redirect()->route('home'); 
+
     }
 
     /**
@@ -46,7 +58,7 @@ class ValuesController extends Controller
      */
     public function show(Value $value)
     {
-        //
+
     }
 
     /**
