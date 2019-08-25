@@ -20,12 +20,12 @@
         <th scope="col">Edit</th>
     </thead>
     <tbody>
-    @foreach($studentList as $student)
+    @foreach($studentList as $key => $student)
         <tr>
             <td>{{$student->name}} {{$student->surname}}</td>
             <td>@if(is_null($student->tempValue)) N/A @else{{$student->tempValue}}{{$discipline->unit}}@endif</td>
             <td>LETZTER</td>
-            <td>EDIT</td>
+            <td><a href="{{route('entry.edit', ['discipline' => $discipline, 'group' => $group, 'i' => $key])}}">Edit</a></td>
         </tr>
     @endforeach
     </tbody>

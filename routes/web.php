@@ -17,8 +17,10 @@ Route::resource('disciplines', 'DisciplinesController');
 Route::view('/admin', 'admin.settings')->name('admin');
 
 Route::get('/disciplines/{discipline}/{group}', 'EntryController@startEntries')->name('entry.action');
-Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}', 'EntryController@nextEntry')->name('entry.next');
+Route::get('/disciplines/{discipline}/{group}/{student}/edit', 'EntryController@editEntry')->name('entry.edit');
+Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}/skipFlag={skipFlag}', 'EntryController@nextEntry')->name('entry.next');
 Route::get('/disciplines/{discipline}/{group}/summary', 'EntryController@nextEntry')->name('entry.summary'); //ToDO Route via /summary to finish inputs
+
 
 Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');
 

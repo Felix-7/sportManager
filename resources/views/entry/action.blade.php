@@ -16,7 +16,7 @@
 
 <div class="container text-center">
     <p>Hier befindet sich später eine Übersicht der Schülergruppe, des zuständigen Lehrers und evt. der letzte Durchlauf dieser Disziplin. !ToDo! </p>
-    <a href="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'i'=>-1])}}" class="btn btn-success">Start</a>
+    <a href="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'i'=>-1, 'skipFlag' =>0])}}" class="btn btn-success">Start</a>
 </div>
 
 <div class="container">

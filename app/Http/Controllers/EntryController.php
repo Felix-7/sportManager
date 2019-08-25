@@ -13,13 +13,13 @@ class EntryController extends Controller
         return view('entry.action', compact('discipline', 'group'));
     }
 
-    public function nextEntry(Discipline $discipline, int $group, int $i){
+    public function nextEntry(Discipline $discipline, int $group, int $i, bool $skipFlag){
         $studentList = Student::students($group)->get();
         $count = count($studentList);
-        
+
         if($i != -1) {
             $studentList[$i]->update($this->validateEntry());
-            if(++$i >= $count){
+            if(++$i >= $count || $skipFlag == true){
                 $studentList = Student::students($group)->get();
                 return view('entry.summary', compact( 'group','discipline', 'studentList', 'i'));
             }
@@ -28,11 +28,18 @@ class EntryController extends Controller
         else{
             $i = 0;
             foreach($studentList as $student){
-                $student->tempValue = 0;
+                $student->tempValue = null;
             }
             $student = $studentList[0];
         }
         return view('entry.next', compact('discipline','group', 'i', 'student'));
+    }
+
+    public function editEntry(Discipline $discipline, int $group, int $i)
+    {
+        $studentList = Student::students($group)->get();
+        $student = $studentList[$i];
+        return view('entry.edit', compact('discipline', 'group', 'student', 'i'));
     }
 
     public function store(Request $request, int $group)

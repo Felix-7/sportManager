@@ -12,17 +12,14 @@
 </nav>
 
 <div class="title text-center">
-    <h1>Datensatz für {{$student->name}} {{$student->surname}}</h1>
+    <h1>Datensatz für {{$student->name}} {{$student->surname}} ändern</h1>
 </div>
 
-
 <div class="container">
-    <form action="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'student'=>$i, 'skipFlag'=>0])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'student'=>$i, 'skipFlag'=>1])}}" method="POST" enctype="multipart/form-data">
         @include('entry.form')
         <div class="container">
-            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Nächster Schüler</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Änderungen bestätigen</button>
         </div>
     </form>
 </div>
-
-
