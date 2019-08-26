@@ -34,7 +34,7 @@ class ValuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $group, int $disciplineId)
+    public function store(Request $request, int $disciplineId, string $group)
     {
         $studentCount = Student::students($group)->get()->count();
 

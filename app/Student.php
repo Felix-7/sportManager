@@ -6,16 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['tempValue'];
+    protected $fillable = ['skn', 'name', 'surname', 'cur_class', 'gender', 'birth', 'active', 'tempValue'];
 
     public function values()
     {
         return $this->hasMany(\App\Value::class);
     }
 
-    public function scopeStudents($query, $group)
+    public function scopeStudents($query, string $group)
     {
         return $query->where('group', '=', $group);
-        dd($query);
+    }
+
+    public function scopeSkn($query, $skn)
+    {
+        return $query->where('skn', '=', $skn)->get();
     }
 }

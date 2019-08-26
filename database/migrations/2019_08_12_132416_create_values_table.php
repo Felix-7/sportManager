@@ -23,6 +23,7 @@ class CreateValuesTable extends Migration
             $table->unsignedBigInteger('teacher_id');
             $table->dateTime('datetime');
             $table->timestamps();
+            //ToDo Maybe add another column for additional comments
         });
     }
 

@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class EntryController extends Controller
 {
-    public function startEntries(Discipline $discipline, int $group){
+    public function startEntries(Discipline $discipline, string $group){
         return view('entry.action', compact('discipline', 'group'));
     }
 
-    public function nextEntry(Discipline $discipline, int $group, int $i, bool $skipFlag){
+    public function nextEntry(Discipline $discipline, string $group, int $i, bool $skipFlag){
         $studentList = Student::students($group)->get();
         $count = count($studentList);
 
@@ -35,16 +35,11 @@ class EntryController extends Controller
         return view('entry.next', compact('discipline','group', 'i', 'student'));
     }
 
-    public function editEntry(Discipline $discipline, int $group, int $i)
+    public function editEntry(Discipline $discipline, string $group, int $i)
     {
         $studentList = Student::students($group)->get();
         $student = $studentList[$i];
         return view('entry.edit', compact('discipline', 'group', 'student', 'i'));
-    }
-
-    public function store(Request $request, int $group)
-    {
-        dd('Hi');
     }
 
     private function validateEntry(){

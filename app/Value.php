@@ -25,7 +25,7 @@ class Value extends Model
         return $this->belongsTo(\App\Discipline::class);
     }
 
-    public static function generateValue(int $intVal, int $group, int $studentNr, int $disciplineId){
+    public static function generateValue(int $intVal, string $group, int $studentNr, int $disciplineId){
         $studentList = Student::students($group)->get();
         $student = $studentList[$studentNr];
 

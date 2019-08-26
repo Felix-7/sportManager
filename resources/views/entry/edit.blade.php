@@ -16,7 +16,7 @@
 </div>
 
 <div class="container">
-    <form action="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'student'=>$i, 'skipFlag'=>1])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'student'=>$i, 'skipFlag'=>1])}}" method="POST">
         @include('entry.form')
         <div class="container">
             <button type="submit" class="btn btn-primary btn-lg btn-block fixed-bottom py-3">Änderungen bestätigen</button>
