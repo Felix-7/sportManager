@@ -3,10 +3,8 @@ This is the GitHub for my sports-VWA-project. For myself and my teachers.
 
 ---- Current Project Goals ----
 
--> Implement Views - no visual aspect yet, just ensure everything is working like it should
--> Implement Database & Models
+-> Small adjustments to how everything is working ... moving stuff around, adding some nice functions etc etc. 
 
 ---- Further Ahead ----
 
--> Complete Implementation of the Teacher-Migration
--> Visual Aspects!
+-> Start working on the final part - the statistics
