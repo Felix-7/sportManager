@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Discipline;
 use App\Student;
+use App\Value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,8 @@ class EntryController extends Controller
             $studentList[$i]->update($this->validateEntry());
             if(++$i >= $count || $skipFlag == true){
                 $studentList = Student::students($group)->get();
-                return view('entry.summary', compact( 'group','discipline', 'studentList', 'i'));
+                $lastResults = Value::getLastResults($discipline->id, $studentList);
+                return view('entry.summary', compact( 'group','discipline', 'studentList', 'i', 'lastResults'));
             }
             $student = $studentList[$i];
         }

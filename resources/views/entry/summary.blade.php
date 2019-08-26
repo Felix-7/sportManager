@@ -15,8 +15,8 @@
 <table class="table">
     <thead>
         <th scope="col">Name</th>
-        <th scope="col">WERT</th>
-        <th scope="col">Steigerung</th>
+        <th scope="col">Wert</th>
+        <th scope="col">Letzter Wert</th>
         <th scope="col">Edit</th>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         <tr>
             <td>{{$student->name}} {{$student->surname}}</td>
             <td>@if(is_null($student->tempValue)) N/A @else{{$student->tempValue}} {{$discipline->unit}}@endif</td>
-            <td>LETZTER</td>
+            <td>@if($lastResults[$key]->value == -1) N/A @else{{$lastResults[$key]->value}} {{$discipline->unit}}@endif</td>
             <td><a href="{{route('entry.edit', ['discipline' => $discipline, 'group' => $group, 'i' => $key])}}">Edit</a></td>
         </tr>
     @endforeach

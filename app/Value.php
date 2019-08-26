@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class Value extends Model
@@ -23,6 +24,23 @@ class Value extends Model
     public function discipline()
     {
         return $this->belongsTo(\App\Discipline::class);
+    }
+
+    public static function getLastResults(int $disciplineId, $studentList)
+    {
+        $lastResults = array();
+        foreach($studentList as $key => $student){
+            $query = Value::where('student_id', '=', $student->id)->where('discipline_id', '=', $disciplineId)->orderBy('created_at', 'DESC');
+            if($query->first() == null){
+                $result = -1;
+            }
+            else {
+                $result = $query->first('value');
+            }
+
+            $lastResults = Arr::add($lastResults, $key, $result);
+        }
+        return $lastResults;
     }
 
     public static function generateValue(int $intVal, string $group, int $studentNr, int $disciplineId){
