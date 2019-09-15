@@ -22,6 +22,9 @@ Route::get('/disciplines/{discipline}/{group}/{student}/edit', 'EntryController@
 Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}/skipFlag={skipFlag}', 'EntryController@nextEntry')->name('entry.next');
 Route::get('/disciplines/{discipline}/{group}/summary', 'EntryController@nextEntry')->name('entry.summary'); //ToDO Route via /summary to finish inputs
 
+Route::get('/stats', 'StatsController@search')->name('stats.select');
+Route::post('/stats/result', 'StatsController@deliver')->name('stats.deliver');
+
 Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');
 
 Route::get('/logout', 'Auth\LoginController@logout');

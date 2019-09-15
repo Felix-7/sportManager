@@ -35,7 +35,7 @@ class Value extends Model
                 $result = -1;
             }
             else {
-                $result = $query->first('value');
+                $result = $query->first('value')->value;
             }
 
             $lastResults = Arr::add($lastResults, $key, $result);

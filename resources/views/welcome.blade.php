@@ -90,7 +90,7 @@
                 </div>
                 <div class="links">
                     <a href="{{route('disciplines.index')}}">Messen</a>
-                    <a href="{{route('home')}}">Statistik</a>
+                    <a href="{{route('stats.select')}}">Statistik</a>
                     <a href="{{route('admin')}}">Erweitert</a>
                 </div>
 
