@@ -44,10 +44,7 @@ class DisciplinesController extends Controller
      */
     public function store()
     {
-
         $discipline = Discipline::create($this->validateRequest());
-
-
         return redirect('disciplines');
     }
 

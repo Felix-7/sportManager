@@ -11,7 +11,22 @@ use Illuminate\Support\Facades\DB;
 class EntryController extends Controller
 {
     public function startEntries(Discipline $discipline, string $group){
-        return view('entry.action', compact('discipline', 'group'));
+        $studentList = Student::students($group)->get();
+        $lastDate = Value::getLastResults($discipline->id, $studentList, 'datetime');
+
+        $mostRecent= 0;
+        $now = time();
+        foreach($lastDate as $date){
+            $curDate = strtotime($date);
+            if ($curDate > $mostRecent && $curDate < $now) {
+                $mostRecent = $curDate;
+            }
+        }
+
+        if($mostRecent != 0) $lastDate = date('d.m.y', $mostRecent);
+        else $lastDate = 0;
+
+        return view('entry.action', compact('discipline', 'group', 'lastDate'));
     }
 
     public function nextEntry(Discipline $discipline, string $group, int $i, bool $skipFlag){
@@ -22,7 +37,7 @@ class EntryController extends Controller
             $studentList[$i]->update($this->validateEntry());
             if(++$i >= $count || $skipFlag == true){
                 $studentList = Student::students($group)->get();
-                $lastResults = Value::getLastResults($discipline->id, $studentList);
+                $lastResults = Value::getLastResults($discipline->id, $studentList, 'value');
                 return view('entry.summary', compact( 'group','discipline', 'studentList', 'i', 'lastResults'));
             }
             $student = $studentList[$i];

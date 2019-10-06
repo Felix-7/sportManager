@@ -26,7 +26,7 @@ class Value extends Model
         return $this->belongsTo(\App\Discipline::class);
     }
 
-    public static function getLastResults(int $disciplineId, $studentList)
+    public static function getLastResults(int $disciplineId, $studentList, $mode)
     {
         $lastResults = array();
         foreach($studentList as $key => $student){
@@ -35,7 +35,7 @@ class Value extends Model
                 $result = -1;
             }
             else {
-                $result = $query->first('value')->value;
+                $result = $query->first($mode)->$mode;
             }
 
             $lastResults = Arr::add($lastResults, $key, $result);

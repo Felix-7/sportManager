@@ -15,7 +15,12 @@
 </div>
 
 <div class="container text-center">
-    <p>Hier befindet sich später eine Übersicht der Schülergruppe, des zuständigen Lehrers und evt. der letzte Durchlauf dieser Disziplin. !ToDo! </p>
+
+    @if($lastDate > 0)
+    <p>Zuletzt durchgeführt am {{$lastDate}} </p>
+    @else
+        <p>Keine aufgezeichneten Daten</p>
+    @endif
     <a href="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'i'=>-1, 'skipFlag' =>0])}}" class="btn btn-success">Start</a>
 </div>
 

@@ -27,9 +27,6 @@
         @if($key % 2 == 1)
             </div>
         @endif
-
-
-
     @endforeach
 </div>
 

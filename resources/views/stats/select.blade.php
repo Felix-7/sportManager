@@ -3,35 +3,30 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Auswahl</li>
+        <li class="breadcrumb-item active" aria-current="page">Modus</li>
     </ol>
 </nav>
 
 <div class="title text-center">
-    <h1>Daten abfragen</h1>
+    <h1>Modus wählen</h1>
 </div>
 
-<div class="container">
-    <form action="{{route('stats.deliver')}}" method="post">
-        <div class="form-row my-3">
-            <div class="col-6">
-                <select name="discipline_id" id="discipline_id" class="form-control">
-                    <option disabled selected>Disziplin</option>
-                    @foreach($disciplines as $discipline)
-                        <option value="{{$discipline->id}}">{{$discipline->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-6">
-                <select name="group_id" id="group_id" class="form-control">
-                    <option value="0" selected>Gruppe</option>
-                    @foreach($groups as $group)
-                        <option value="{{$group->group}}">{{$group->group}}</option>
-                    @endforeach
-                </select>
-            </div>
 
+<div class="container">
+    <div class="card-deck text-center py-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Suche nach Schüler</h5>
+                <a href="/home" class="btn btn-success">Suchen!</a>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Suchen</button>
-    </form>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Suche nach Disziplin</h5>
+                <a href="{{route('stats.searchdis')}}" class="btn btn-success">Suchen!</a>
+            </div>
+        </div>
+
+    </div>
 </div>
