@@ -25,7 +25,8 @@ class EntryController extends Controller
 
         if($mostRecent != 0) $lastDate = date('d.m.y', $mostRecent);
         else $lastDate = 0;
-        return view('entry.action', compact('discipline', 'group', 'lastDate', 'studentList'));
+        $rowCount = 1;
+        return view('entry.action', compact('discipline', 'group', 'lastDate', 'studentList', 'rowCount'));
     }
 
     public function nextEntry(Discipline $discipline, string $group, int $i, bool $skipFlag){

@@ -28,10 +28,10 @@
             <th>Reihenfolge</th>
         </tr>
         </thead>
-        @foreach($studentList as $key => $student)
+        @foreach($studentList as $student)
             <tr>
                 <td>{{$student->name}} {{$student->surname}}</td>
-                <td>{{$key+1}}</td>
+                <td>{{$rowCount++}}</td>
             </tr>
         @endforeach
 
