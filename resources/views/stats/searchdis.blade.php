@@ -14,26 +14,38 @@
 
 <div class="container">
     <form action="{{route('stats.deliver')}}" method="post">
+        <input type="hidden" name="mode" value="{{$mode}}">
+        <div class="form-row my-3">
+            <select name="discipline_id" id="discipline_id" class="form-control">
+                <option disabled selected>Disziplin</option>
+                @foreach($disciplines as $discipline)
+                    <option value="{{$discipline->id}}">{{$discipline->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        @if($mode == '3')
+            <div class="form row my-3">
+                <select name="upper" class="form-control">
+                    <option disabled selected>Ober- oder Unterstufe</option>
+                    <option value="1">Oberstufe</option>
+                    <option value="0">Unterstufe</option>
+                </select>
+            </div>
+        @else <input type="hidden" name="upper" value="-1">
+        @endif
+        @csrf
+
         <div class="form-row my-3">
             <div class="col-6">
-                <select name="discipline_id" id="discipline_id" class="form-control">
-                    <option disabled selected>Disziplin</option>
-                    @foreach($disciplines as $discipline)
-                        <option value="{{$discipline->id}}">{{$discipline->name}}</option>
-                    @endforeach
-                </select>
+                <button type="submit" name="gender" class="btn btn-primary btn-lg btn-block" value="m">♂</button>
             </div>
             <div class="col-6">
-                <select name="group_id" id="group_id" class="form-control">
-                    <option value="0" selected>Gruppe</option>
-                    @foreach($groups as $group)
-                        <option value="{{$group->group}}">{{$group->group}}</option>
-                    @endforeach
-                </select>
+                <button type="submit" name="gender" class="btn btn-danger btn-lg btn-block" value="f">♀</button>
             </div>
-
         </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Suchen</button>
-        @csrf
+
+
+
     </form>
 </div>

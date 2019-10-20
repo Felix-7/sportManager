@@ -26,7 +26,8 @@
         </div>
     </div>
 </div>
-
-<div class="container">
-    <a href="/disciplines/{{$discipline->id}}" role="button" class="btn btn-info btn-lg btn-block fixed-bottom py-3">Zurück</a>
-</div>
+<footer>
+    <div class="container">
+        <a href="/disciplines/{{$discipline->id}}" role="button" class="btn btn-info btn-lg btn-block fixed-bottom py-3">Zurück</a>
+    </div>
+</footer>

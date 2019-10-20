@@ -21,9 +21,26 @@
     @else
         <p>Keine aufgezeichneten Daten</p>
     @endif
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Reihenfolge</th>
+        </tr>
+        </thead>
+        @foreach($studentList as $key => $student)
+            <tr>
+                <td>{{$student->name}} {{$student->surname}}</td>
+                <td>{{$key+1}}</td>
+            </tr>
+        @endforeach
+
+    </table>
+
     <a href="{{route('entry.next', ['discipline'=>$discipline, 'group'=>$group, 'i'=>-1, 'skipFlag' =>0])}}" class="btn btn-success">Start</a>
 </div>
-
-<div class="container">
-    <a href="{{route('disciplines.show', ['discipline' => $discipline])}}" class="btn btn-info btn-lg btn-block fixed-bottom py-3">Zurück</a>
-</div>
+<footer>
+    <div class="container">
+        <a href="{{route('disciplines.show', ['discipline' => $discipline])}}" class="btn btn-info fixed-bottom btn-lg btn-block py-3">Zurück</a>
+    </div>
+</footer>

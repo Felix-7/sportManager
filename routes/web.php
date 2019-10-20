@@ -23,8 +23,10 @@ Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}/s
 Route::get('/disciplines/{discipline}/{group}/summary', 'EntryController@nextEntry')->name('entry.summary'); //ToDO Route via /summary to finish inputs
 
 Route::view('/stats', 'stats.select')->name('stats.select');
-Route::get('/stats/discipline', 'StatsController@searchByDiscipline')->name('stats.searchdis');
+Route::get('/stats/{mode}', 'StatsController@searchByDiscipline')->name('stats.discipline');
 Route::post('/stats/result', 'StatsController@deliver')->name('stats.deliver');
+Route::post('/stats/detailedSearch', 'StatsController@detailSearch')->name('stats.detail');
+Route::post('/stats/result/final', 'StatsController@deliverDetail')->name('stats.deliverDetail');
 
 
 Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');

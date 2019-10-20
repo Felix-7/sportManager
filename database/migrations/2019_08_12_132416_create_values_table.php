@@ -21,9 +21,14 @@ class CreateValuesTable extends Migration
             $table->string('class');
             $table->string('year');
             $table->unsignedBigInteger('teacher_id');
-            $table->dateTime('datetime');
+            $table->DateTime('datetime');
             $table->timestamps();
             //ToDo Maybe add another column for additional comments
+
+            $table->foreign('discipline_id')->references('id')->on('disciplines');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+
         });
     }
 
