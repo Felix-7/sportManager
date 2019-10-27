@@ -21,13 +21,11 @@ class CreateStudentsTable extends Migration
             $table->string('gender');
             $table->DateTime('birth');
             $table->string('group')->nullable();
-            $table->integer('teacher_id')->nullable();
+            $table->string('teacher')->nullable();
             $table->boolean('active');
             $table->bigIncrements('id');
             $table->integer('tempValue')->nullable();
             $table->timestamps();
-
-            $table->foreign('teacher_id')->references('id')->on('teachers');
         });
     }
 

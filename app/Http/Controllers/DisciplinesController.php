@@ -56,7 +56,8 @@ class DisciplinesController extends Controller
      */
     public function show(Discipline $discipline)
     {
-        $groups = Student::select('group')->whereNotNull('group')->groupBy('group')->get();
+        $teacher = \Auth::user()->name;
+        $groups = Student::select('group')->whereNotNull('group')->where('teacher', '=', $teacher)->groupBy('group')->get();
         return view('disciplines.show', compact('discipline', 'groups'));
     }
 

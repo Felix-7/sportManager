@@ -24,7 +24,12 @@
             <label for="groupList">Schüler-Gruppen Relation: </label>
             <input type="file" name="groupList">
         </div>
+        <div>{{$errors->first('groupList')}}</div>
+        <div>
+            <label for="teacherList">Lehrer-Gruppen Relation: </label>
+            <input type="file" name="teacherList">
+        </div>
 
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary my-3">Upload</button>
     </form>
 </div>

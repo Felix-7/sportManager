@@ -14,6 +14,7 @@ class ListUploadController extends Controller
         $this->validateRequest();
         $request->studentList->storeAs('studentLists', 'students.txt');
         $request->groupList->storeAs('studentLists', 'groups.txt');
+        $request->teacherList->storeAs('studentLists', 'teachers.txt');
 
         $file = fopen('../storage/app/studentLists/students.txt', 'r') or exit("Datei konnte nicht geöffnet werden!");
         while(!feof($file)) {
@@ -44,14 +45,32 @@ class ListUploadController extends Controller
             }
         }
 
+        $file = fopen('../storage/app/studentLists/teachers.txt','r') or exit("Datei konnte nicht geöffnet werden!");
+        while(!feof($file)){
+            $rawTeacher = explode(";", fgets($file));
+
+            if(array_key_exists(3, $rawTeacher) == true) {
+                $rawClasses = explode(',', $rawTeacher[3]);
+
+                foreach ($rawClasses as $class) {
+                    $students = Student::class($rawTeacher[2], $class)->get();
+                    foreach ($students as $student) {
+                        $student->teacher = $rawTeacher[1];
+                        $student->save();
+                    }
+                }
+            }
+        }
+
         return redirect()->route('home');
     }
 
     private function validateRequest(){
 
         return request()->validate([
-            'studentList' => 'required|mimes:txt',
-            'groupList' => 'required|mimes:txt',
+            'studentList' => 'required|mimes:txt,csv',
+            'groupList' => 'required|mimes:txt,csv',
+            'teacherList' => 'required|mimes:txt,csv'
         ]);
     }
 
