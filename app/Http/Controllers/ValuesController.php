@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use App\Discipline;
 use App\Student;
 use App\Value;
+use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ValuesController extends Controller
 {
@@ -46,8 +51,30 @@ class ValuesController extends Controller
             }
         }
 
-        return redirect()->route('home'); 
+        $result = Value::where('created_at', '>', (Carbon::now()->subSeconds(30)->toDateTimeString()))
+            ->where('teacher_id', '=', \Auth::user()->id)
+            ->with('student')
+            ->get();
 
+        $orderedResult = $this->orderScores($result, $disciplineId);
+        $discipline = Discipline::where('id', '=', $disciplineId)->first();
+
+        $pdf = PDF::loadView('pdf', compact('orderedResult', 'discipline'));
+        Storage::put('latest/' . Auth::User()->name . '_LAST_RESULT.pdf', $pdf->output());
+
+        $pdf->download();
+
+        return view('entry.wantPDF');
+
+    }
+
+    private function orderScores($valueInput, $discipline_id){
+
+        $best_high = Discipline::where('id', '=', $discipline_id)->first()->best_high;
+        if($best_high == 1) $ordered = $valueInput->sortByDesc('value');
+        else if($best_high == 0) $ordered = $valueInput->sortBy('value');
+        else $ordered = "ERROR";
+        return $ordered;
     }
 
     /**

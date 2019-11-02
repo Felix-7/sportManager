@@ -13,6 +13,14 @@
 
 
 <div class="container">
+    @if($last == true)
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Letzte Messung</h5>
+            <a href="{{route('stats.downloadLatest')}}" class="btn btn-success"> PDF herunterladen </a>
+        </div>
+    </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Hall of Fame</h5>

@@ -12,7 +12,7 @@
     <h1>Alle Ergebnisse:</h1>
 </div>
 
-<table class="table">
+<table class="table table-bordered col-12">
     <thead>
     <th scope="col">Name</th>
     <th scope="col">Wert</th>
@@ -26,3 +26,7 @@
     @endforeach
     </tbody>
 </table>
+
+<div class="container text-center">
+    <a href="{{route('stats.download', ['discipline_id' => $discipline->id, 'mode' => $mode, 'gender' => $gender, 'useAge' => $useAge, 'age' => $age, 'class' => $class])}}" class="btn btn-success ">PDF herunterladen</a>
+</div>

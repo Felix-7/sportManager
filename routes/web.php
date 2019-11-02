@@ -22,12 +22,14 @@ Route::get('/disciplines/{discipline}/{group}/{student}/edit', 'EntryController@
 Route::match(array('GET', 'POST'),'/disciplines/{discipline}/{group}/{student}/skipFlag={skipFlag}', 'EntryController@nextEntry')->name('entry.next');
 Route::get('/disciplines/{discipline}/{group}/summary', 'EntryController@nextEntry')->name('entry.summary'); //ToDO Route via /summary to finish inputs
 
-Route::view('/stats', 'stats.select')->name('stats.select');
+Route::get('/stats', 'StatsController@selection')->name('stats.select');
 Route::get('/stats/{mode}', 'StatsController@searchByDiscipline')->name('stats.discipline');
 Route::post('/stats/result', 'StatsController@deliver')->name('stats.deliver');
 Route::post('/stats/detailedSearch', 'StatsController@detailSearch')->name('stats.detail');
 Route::post('/stats/result/final', 'StatsController@deliverDetail')->name('stats.deliverDetail');
 
+Route::get('/stats/{discipline_id}/{mode}/{gender}/{useAge}/{age}/{class}/download', 'StatsController@downloadPDF')->name('stats.download');
+Route::get('/stats/latest/download', 'StatsController@downloadLatestPDF')->name('stats.downloadLatest');
 
 Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');
 
