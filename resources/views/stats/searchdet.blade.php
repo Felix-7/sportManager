@@ -20,6 +20,7 @@
         <input type="hidden" name="discipline_id" value="{{$discipline_id}}">
         <input type="hidden" name="gender" value="{{$gender}}">
         <input type="hidden" name="useAge" value="{{$useAge}}">
+        <input type="hidden" name="limit" value="{{$limit}}">
 
         @if($useAge == 1)
             <div class="form-group">

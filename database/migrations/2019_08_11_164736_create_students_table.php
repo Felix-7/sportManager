@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->string('surname');
             $table->string('cur_class');
             $table->string('gender');
-            $table->DateTime('birth');
+            $table->dateTime('birth');
             $table->string('group')->nullable();
             $table->string('teacher')->nullable();
             $table->boolean('active');

@@ -28,7 +28,7 @@ Route::post('/stats/result', 'StatsController@deliver')->name('stats.deliver');
 Route::post('/stats/detailedSearch', 'StatsController@detailSearch')->name('stats.detail');
 Route::post('/stats/result/final', 'StatsController@deliverDetail')->name('stats.deliverDetail');
 
-Route::get('/stats/{discipline_id}/{mode}/{gender}/{useAge}/{age}/{class}/download', 'StatsController@downloadPDF')->name('stats.download');
+Route::get('/stats/{discipline_id}/{mode}/{gender}/{useAge}/{age}/{class}/{limit}/{upper}/download', 'StatsController@downloadPDF')->name('stats.download');
 Route::get('/stats/latest/download', 'StatsController@downloadLatestPDF')->name('stats.downloadLatest');
 
 Route::post('/{discipline}/{group}/success', 'ValuesController@store')->name('entry.store');

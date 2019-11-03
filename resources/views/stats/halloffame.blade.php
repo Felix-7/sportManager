@@ -16,6 +16,7 @@
         <input type="hidden" name="mode" value="{{$mode}}">
         <input type="hidden" name="discipline_id" value="{{$discipline->id}}">
         <input type="hidden" name="gender" value="{{$gender}}">
+        <input type="hidden" name="limit" value="{{$limit}}">
         <div class="form-row my-3">
             <div class="col-6">
                 <button type="submit" name="useAge" value="1" class="btn btn-secondary btn-lg btn-block" >Alter</button>

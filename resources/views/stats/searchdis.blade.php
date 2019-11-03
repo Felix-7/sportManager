@@ -36,6 +36,18 @@
         @endif
         @csrf
 
+        <div class="form row my-3">
+            <select name="limit" class="form-control">
+                <option disabled selected>Anzahl an Werten</option>
+                <option value="0">Alle</option>
+                <option value="3">3</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+
         <div class="form-row my-3">
             <div class="col-6">
                 <button type="submit" name="gender" class="btn btn-primary btn-lg btn-block" value="m">♂</button>

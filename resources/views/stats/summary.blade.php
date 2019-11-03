@@ -26,7 +26,6 @@
     @endforeach
     </tbody>
 </table>
-
 <div class="container text-center">
-    <a href="{{route('stats.download', ['discipline_id' => $discipline->id, 'mode' => $mode, 'gender' => $gender, 'useAge' => $useAge, 'age' => $age, 'class' => $class])}}" class="btn btn-success ">PDF herunterladen</a>
+    <a href="{{route('stats.download', ['discipline_id' => $discipline->id, 'mode' => $mode, 'gender' => $gender, 'useAge' => $useAge, 'age' => $age, 'class' => $class, 'limit' => $limit, 'upper' => $upper])}}" class="btn btn-success ">PDF herunterladen</a>
 </div>

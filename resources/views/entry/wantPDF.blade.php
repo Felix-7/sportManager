@@ -7,4 +7,4 @@
 <hr width="80%">
 <a href="{{route('stats.downloadLatest')}}" class="btn btn-primary py-5 btn-lg btn-block">Ja, PDF herunterladen </a>
 <hr width="80%">
-<a href="{{route('home')}}" class="btn btn-secondary py-5 btn-lg btn-block">Nein, zur Startseite </a>
+<a href="{{route('home')}}" class="btn btn-secondary py-5 btn-lg btn-block">Zurück zur Startseite </a>

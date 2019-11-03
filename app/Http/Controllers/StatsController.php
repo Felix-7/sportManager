@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Storage;
 
 class StatsController extends Controller
 {
-    public function downloadPDF($discipline_id, $mode, $gender, $useAge, $age, $class)
+    public function downloadPDF($discipline_id, $mode, $gender, $useAge, $age, $class, $limit, $upper)
     {
         if($mode == 2) $result = $this->getDetailResult($discipline_id, $gender, $useAge, $age, $class, true);
+        else if($mode == 3) $result = $this->getUpperLower($upper, $discipline_id, $gender);
         else $result = $this->getDetailResult($discipline_id, $gender, $useAge, $age, $class, false);
         $discipline = Discipline::where('id', '=', $discipline_id)->first();
         $orderedResult = $this->orderScores($result, $discipline_id);
+        $orderedResult = $this->limitEntries($orderedResult, $limit);
         $pdf = PDF::loadView('pdf', compact('orderedResult', 'discipline'));
         return $pdf->download('result.pdf');
 
@@ -41,12 +43,11 @@ class StatsController extends Controller
         $useAge = 0; $age = -1; $class = -1; // TO GIVE A MODULAR DESIGN, THESE VARIABLES NEED TO BE DEFINED
 
         $search = (object) $this->validateRequest();
-        $groupAssist = Student::all()
-            ->where('gender', '=', $search->gender)->unique('group');
         $mode = $search->mode;
         $gender = $search->gender;
         $discipline = Discipline::all()
             ->where('id', '=', $search->discipline_id)->first();
+        $limit = $search->limit;
 
         //HALL OF FAME
         if($mode == 1){
@@ -55,12 +56,15 @@ class StatsController extends Controller
                 ->load('student')
                 ->where('student.gender', '=', $search->gender);
             $orderedResult = $this->orderScores($result, $search->discipline_id);
-            return view('stats.halloffame', compact('orderedResult', 'discipline', 'mode', 'gender'));
+            $orderedResult = $this->limitEntries($orderedResult, $limit);
+            $upper = -1;
+            return view('stats.halloffame', compact('orderedResult', 'discipline', 'mode', 'gender', 'limit', 'upper'));
         }
 
         //CURRENT SCHOOL YEAR
         if($mode == 2){
             $schoolyear = $this->getSchoolYear();
+            $upper = -1;
 
             $result = Value::all()
                 ->where('discipline_id', '=', $search->discipline_id)
@@ -68,30 +72,24 @@ class StatsController extends Controller
                 ->where('student.gender', '=', $search->gender)
                 ->where('created_at', '>', $schoolyear);
             $orderedResult = $this->orderScores($result, $search->discipline_id);
+            $orderedResult = $this->limitEntries($orderedResult, $limit);
 
-            return view('stats.halloffame', compact('orderedResult', 'discipline', 'mode', 'gender'));
+            return view('stats.halloffame', compact('orderedResult', 'discipline', 'mode', 'gender', 'limit', 'upper'));
 
         }
 
         //LOWER / HIGHER SCHOOL
         if($mode == 3){
-            if($search->upper == 1) $gap = ">"; //HIGHER
-            else $gap = "<="; //LOWER
+            $upper = $search->upper;
 
-            $result = Value::where('class', $gap, '4')
-                ->where('discipline_id', '=', $search->discipline_id)
-                ->with('student')
-                ->whereHas('student', function($q) use($gender){
-                    $q->where('gender', $gender);
-                })->get();
-
+            $result = $this->getUpperLower($upper, $search->discipline_id, $gender);
             $orderedResult = $this->orderScores($result, $search->discipline_id);
+            $orderedResult = $this->limitEntries($orderedResult, $limit);
 
-            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class'));
+            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class', 'limit', 'upper'));
 
         }
-
-        return view('stats.summary', compact('result', 'groupAssist', 'mode'));
+        return view('home'); //IN CASE THERE HAPPENS SOMETHING TO THE MODE-PARAM
     }
 
     public function selection()
@@ -108,22 +106,26 @@ class StatsController extends Controller
         $useAge = $search->useAge;
         $class = $search->class;
         $age = $search->age;
+        $limit = $search->limit;
         $discipline = Discipline::where('id', '=', $search->discipline_id)->first();
 
+        $upper = -1; //NEEDED NOT IN THIS MODE, BUT IN ANOTHER --> PDF GENERATION!
 
 
         //HALL OF FAME
         if($mode == 1){
             $result = $this->getDetailResult($discipline->id, $gender, $useAge, $age, $class, false);
             $orderedResult = $this->orderScores($result, $search->discipline_id);
-            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class'));
+            $orderedResult = $this->limitEntries($orderedResult, $limit);
+            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class', 'limit', 'upper'));
         }
 
         //CURRENT SCHOOL YEAR
         if($mode == 2){
             $result = $this->getDetailResult($discipline->id, $gender, $useAge, $age, $class, true);
             $orderedResult = $this->orderScores($result, $search->discipline_id);
-            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class'));
+            $orderedResult = $this->limitEntries($orderedResult, $limit);
+            return view('stats.summary', compact('orderedResult', 'discipline', 'mode', 'gender', 'useAge', 'age', 'class', 'limit', 'upper'));
         }
 
     }
@@ -133,8 +135,9 @@ class StatsController extends Controller
         $useAge = $request->useAge;
         $mode = $request->mode;
         $discipline_id = $request->discipline_id;
+        $limit = $request->limit;
 
-        return view('stats.searchdet', compact('useAge', 'mode', 'discipline_id', 'gender'));
+        return view('stats.searchdet', compact('useAge', 'mode', 'discipline_id', 'gender', 'limit'));
     }
 
     private function validateRequest(){
@@ -143,7 +146,8 @@ class StatsController extends Controller
             'discipline_id' => 'required',
             'gender' => 'required',
             'mode' => 'required',
-            'upper' => 'required', //ToDo Change to required if...
+            'upper' => 'required',
+            'limit' => 'required'
         ]);
     }
 
@@ -151,6 +155,7 @@ class StatsController extends Controller
 
         return request()->validate([
             'gender' => 'required',
+            'limit' => 'required',
             'useAge' => 'required',
             'mode' => 'required',
             'discipline_id' => 'required',
@@ -174,13 +179,10 @@ class StatsController extends Controller
         //IF NOT DATE RESTRICTED
         if ($useDate == false) {
             //SORT BY AGE
-            if ($useAge == 1) {
-                $result = Value::query()
-                    ->whereHas('student', function ($q) use ($age) {
-                        $q->whereRaw(
-                            'TIMESTAMPDIFF(YEAR, students.birth, values.datetime) < ?', [$age]
-                        );
-                    })
+
+            if ($useAge == 1) { //STILL PROBLEMATIC 
+                $result = Value::with('student')
+                    ->whereColumn('created_at', '>', 'student')
                     ->get();
 
                 dd($result);
@@ -194,6 +196,8 @@ class StatsController extends Controller
             }
             return $result;
         }
+
+        //IF DATE RESTRICTED
         else {
             $schoolyear = $this->getSchoolYear();
             //SORT BY AGE
@@ -222,12 +226,33 @@ class StatsController extends Controller
         }
     }
 
+    private function getUpperLower($upper, $discipline_id, $gender){
+        if($upper == 1) $gap = ">"; //HIGHER
+        else $gap = "<="; //LOWER
+
+        $result = Value::where('class', $gap, '4')
+            ->where('discipline_id', '=', $discipline_id)
+            ->with('student')
+            ->whereHas('student', function($q) use($gender){
+                $q->where('gender', $gender);
+            })->get();
+
+        return $result;
+    }
+
     private function getSchoolYear(){
         $month = Carbon::now()->format('m');
         if($month >= 9)
             $year = Carbon::now()->format('Y')+1;
         else $year = Carbon::now()->format('Y')-1;
         return new Carbon($year . '-09-01 00:00:00');
+    }
+
+    private function limitEntries($orderedResult, $limit){
+        if($limit > 0){
+            $orderedResult = $orderedResult->slice(0, $limit);
+        }
+        return $orderedResult;
     }
 
 }
