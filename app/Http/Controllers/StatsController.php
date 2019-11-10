@@ -180,15 +180,14 @@ class StatsController extends Controller
         if ($useDate == false) {
             //SORT BY AGE
 
-            if ($useAge == 1) { //STILL PROBLEMATIC 
-                $result = Value::with('student')
-                    ->whereColumn('created_at', '>', 'student')
+            if ($useAge == 1) {
+                $result = Value::where('discipline_id', '=', $discipline_id)
+                    ->where('age', '<=', $age)
                     ->get();
-
-                dd($result);
             } //SORT BY CLASS
             else {
-                $result = Value::where('class', 'like', '%' . $class . '%')->where('discipline_id', '=', $discipline_id)
+                $result = Value::where('class', 'like', '%' . $class . '%')
+                    ->where('discipline_id', '=', $discipline_id)
                     ->with('student')
                     ->whereHas('student', function ($q) use ($gender) {
                         $q->where('gender', $gender);
@@ -204,14 +203,9 @@ class StatsController extends Controller
             if ($useAge == 1) {
                 $result = Value::query()
                     ->where('created_at', '>', $schoolyear)
-                    ->whereHas('student', function ($q) use ($age) {
-                        $q->whereRaw(
-                            'TIMESTAMPDIFF(YEAR, students.birth, values.datetime) < ?', [$age]
-                        );
-                    })
+                    ->where('discipline_id', '=', $discipline_id)
+                    ->where('age', '<=', $age)
                     ->get();
-
-                dd($result);
             } //SORT BY CLASS
             else {
                 $result = Value::where('class', 'like', '%' . $class . '%')->where('discipline_id', '=', $discipline_id)

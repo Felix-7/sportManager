@@ -12,16 +12,24 @@
     <h1>Alle Ergebnisse:</h1>
 </div>
 
-<table class="table table-bordered col-12">
+<table class="table table-striped table-bordered">
     <thead>
-    <th scope="col">Name</th>
-    <th scope="col">Wert</th>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Klasse</th>
+            <th scope="col">Alter</th>
+            <th scope="col">Wert</th>
+            <th scope="col">Datum</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach($orderedResult as $student)
+    @foreach($orderedResult as $value)
         <tr>
-            <td>{{$student->student->name}} {{$student->student->surname}}</td>
-            <td>{{$student->value}} {{$discipline->unit}}</td>
+            <td>{{$value->student->name}} {{$value->student->surname}}</td>
+            <td>{{$value->value}} {{$discipline->unit}}</td>
+            <td>{{$value->class}}</td>
+            <td>{{$value->age}}</td>
+            <td>{{date('d.m.Y', strtotime($value->datetime))}}</td>
         </tr>
     @endforeach
     </tbody>

@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -26,6 +27,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+            $file = new Filesystem();
+            $file->cleanDirectory('storage/app/latest');
+        })->monthlyOn('30', '23:59'); //ToDo CRON ENTRIES AUTOMATICAL REMOVAL
     }
 
     /**

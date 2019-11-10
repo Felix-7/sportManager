@@ -20,6 +20,7 @@ class CreateValuesTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->string('class');
             $table->string('year');
+            $table->unsignedInteger('age');
             $table->unsignedBigInteger('teacher_id');
             $table->DateTime('datetime');
             $table->timestamps();
