@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::view('/', 'welcome')->name('main');
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -43,6 +45,12 @@ Route::get('/stats/latest/download', 'StatsController@downloadLatestPDF')->name(
 
 //AUTH ROUTES
 
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Broadcast::channel('App.User.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/newPassword', 'PersonalPasswordController@newPassword')->name('auth.newPW');
 Route::post('/passwordSuccess', 'PersonalPasswordController@savePassword')->name('auth.savePW');

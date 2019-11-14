@@ -45,8 +45,7 @@ class ListUploadController extends Controller
             $rawGroup = explode(";", fgets($file));
 
             if(count($rawGroup) > 4) {
-                $skn = $rawGroup[0];
-                $student = Student::where('skn', '=', trim($rawGroup[0]))->get();
+                $student = Student::where('skn', '=', $rawGroup[0])->get();
                 //dd($student);
                 $student->group = $rawGroup[4];
                 //$student->save();
