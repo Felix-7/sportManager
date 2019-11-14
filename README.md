@@ -3,8 +3,8 @@ This is the GitHub for my sports-VWA-project. For myself and my teachers.
 
 ---- Current Project Goals ----
 
--> Small adjustments to how everything is working ... moving stuff around, adding some nice functions etc etc. 
+-> Finalization, Authentification, .... getting everything ready to let my project discover the real-world out there! 
 
 ---- Further Ahead ----
 
--> Start working on the final part - the statistics
+-> Evaluating the first test phase. 
