@@ -20,7 +20,7 @@ class Student extends Model
 
     public function scopeSkn($query, $skn)
     {
-        return $query->where('skn', '=', $skn)->get();
+        return $query->where('skn', '=', $skn);
     }
 
     public function scopeClass($query, $gender, $class)

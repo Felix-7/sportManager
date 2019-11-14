@@ -91,7 +91,10 @@
                 <div class="links">
                     <a href="{{route('disciplines.index')}}">Messen</a>
                     <a href="{{route('stats.select')}}">Statistik</a>
-                    <a href="{{route('admin')}}">Erweitert</a>
+                    @if(Auth::user()->id == 1)
+                        <a href="{{route('admin')}}">Listen-Upload</a>
+                        <a href="{{route('admin.accounts')}}">Lehreraccounts</a>
+                    @endif
                 </div>
 
                 @else

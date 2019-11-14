@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class Teacher extends Authenticatable
 {
@@ -16,7 +17,7 @@ class Teacher extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'firstLogin',
     ];
 
     /**
@@ -40,6 +41,15 @@ class Teacher extends Authenticatable
     public function values()
     {
         return $this->hasMany(\App\Value::class);
+    }
+
+    public static function generateTeacher(string $name, string $pw){
+        return Teacher::create([
+            'name' => $name,
+            'email' => strtolower($name) . '@gymgmunden.at',
+            'password' => Hash::make($pw),
+            'firstLogin' => true,
+        ]);
     }
 
 }
