@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/resources/views/stats/searchdis.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/stats/searchdis.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/stats/select.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/stats/select.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/stats/summary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/stats/summary.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +44,17 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="623">
+              <caret line="93" column="75" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -102,7 +113,6 @@
         <option value="$PROJECT_DIR$/app/Teacher.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PersonalPasswordController.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/settings.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/accounts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AccountsController.php" />
@@ -122,6 +132,7 @@
         <option value="$PROJECT_DIR$/resources/views/stats/searchdis.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/stats/select.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/stats/summary.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
       </list>
     </option>
   </component>
@@ -425,12 +436,12 @@
       <workItem from="1573745337216" duration="3014000" />
       <workItem from="1573749743309" duration="692000" />
       <workItem from="1573764321962" duration="170000" />
-      <workItem from="1575202137037" duration="4062000" />
+      <workItem from="1575202137037" duration="4413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204210000" />
+    <option name="totallyTimeSpent" value="204561000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,6 +454,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21272366" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -809,8 +821,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2063">
-          <caret line="93" column="45" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
+        <state relative-caret-position="623">
+          <caret line="93" column="75" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
         </state>
       </provider>
     </entry>

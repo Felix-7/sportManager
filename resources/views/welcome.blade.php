@@ -91,7 +91,7 @@
                 <div class="links">
                     <a href="{{route('disciplines.index')}}">Messen</a>
                     <a href="{{route('stats.select')}}">Statistik</a>
-                    @if(Auth::user()->id == 1)
+                    @if(Auth::user()->id == 1 || Auth::user()->name == 'JAW')
                         <a href="{{route('admin')}}">Listen-Upload</a>
                         <a href="{{route('admin.accounts')}}">Lehreraccounts</a>
                     @endif
