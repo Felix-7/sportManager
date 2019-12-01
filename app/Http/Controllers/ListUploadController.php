@@ -22,6 +22,7 @@ class ListUploadController extends Controller
         $request->teacherList->storeAs('studentLists', 'teachers.txt');
 
         $file = fopen('../storage/app/studentLists/students.txt', 'r') or exit("Datei konnte nicht geöffnet werden!");
+        $this->remove_utf8_bom($file);
         while(!feof($file)) {
             $rawStudent = explode(';', fgets($file));
             if(count($rawStudent) == 6){
@@ -41,23 +42,34 @@ class ListUploadController extends Controller
         fclose($file);
 
         $file = fopen('../storage/app/studentLists/groups.txt','r') or exit("Datei konnte nicht geöffnet werden!");
-        while(!feof($file)){
-            $rawGroup = explode(";", fgets($file));
+        $this->remove_utf8_bom($file);
 
+        //RESET GROUPS
+        $students = Student::all();
+        foreach($students as $student){
+            $student->group = null;
+            $student->save;
+        }
+
+        //NEW GROUPS HERE
+        while(!feof($file)){
+            $rawGroup = explode(';', fgets($file));
             if(count($rawGroup) > 4) {
-                $student = Student::where('skn', '=', $rawGroup[0])->get();
-                //dd($student);
-                $student->group = $rawGroup[4];
-                //$student->save();
+                $student = Student::where('skn', '=', (string) $rawGroup[0])->first();
+                if(!empty($student)) {
+                    $student->group = $rawGroup[4];
+                    $student->save();
+                }
             }
         }
 
         $file = fopen('../storage/app/studentLists/teachers.txt','r') or exit("Datei konnte nicht geöffnet werden!");
+        $this->remove_utf8_bom($file);
         // PREPARE ARRAY FOR COLLECTING RANDOMIZED PASSWORDS:
         $login_data=[];
         $i = 0;
         while(!feof($file)){
-            $rawTeacher = explode(";", fgets($file));
+            $rawTeacher = explode(';', fgets($file));
             if(array_key_exists(3, $rawTeacher) == true) {
                 $rawClasses = explode(',', $rawTeacher[3]);
 
@@ -90,6 +102,14 @@ class ListUploadController extends Controller
             'groupList' => 'required|mimes:txt,csv',
             'teacherList' => 'required|mimes:txt,csv'
         ]);
+    }
+
+    //STACKOVERFLOW, REMOVE BOM!
+    private function remove_utf8_bom($text)
+    {
+        $bom = pack('H*','EFBBBF');
+        $text = preg_replace("/^$bom/", '', $text);
+        return $text;
     }
 
 

@@ -48,11 +48,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 //AUTH ROUTES
 
-
     Route::get('/newPassword', 'PersonalPasswordController@newPassword')->name('auth.newPW');
     Route::post('/passwordSuccess', 'PersonalPasswordController@savePassword')->name('auth.savePW');
-
-
 });
 
 Auth::routes([
@@ -60,12 +57,6 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
 Route::get('/logout', 'Auth\LoginController@logout');
 
 

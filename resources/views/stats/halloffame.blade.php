@@ -5,6 +5,7 @@
         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{route('stats.select')}}">Modus</a></li>
         <li class="breadcrumb-item active" aria-current="page">Ergebnis</li>
+        <li class="ml-auto">SportManager</li>
     </ol>
 </nav>
 

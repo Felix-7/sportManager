@@ -4,6 +4,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Sicherheit</li>
         <li class="breadcrumb-item active" aria-current="page">Passwort</li>
+        <li class="ml-auto">SportManager</li>
     </ol>
 </nav>
 

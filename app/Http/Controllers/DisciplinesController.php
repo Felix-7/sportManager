@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Discipline;
 use App\Student;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DisciplinesController extends Controller
@@ -56,8 +57,8 @@ class DisciplinesController extends Controller
      */
     public function show(Discipline $discipline)
     {
-        $teacher = \Auth::user()->name;
-        $groups = Student::select('group')->whereNotNull('group')->where('teacher', '=', $teacher)->groupBy('group')->get();
+        $teacher = Auth::user()->name;
+        $groups = Student::select('group')->where('group', 'LIKE', '%' . $teacher)->groupBy('group')->get();
         return view('disciplines.show', compact('discipline', 'groups'));
     }
 
