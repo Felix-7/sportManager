@@ -22,7 +22,6 @@ class AccountsController extends Controller
         $newPass = Str::random(8);
         $teacher->password = Hash::make($newPass);
         $teacher->save();
-
         return view('admin.newpass', compact('teacher', 'newPass'));
     }
 }

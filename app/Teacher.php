@@ -49,6 +49,7 @@ class Teacher extends Authenticatable
             'email' => strtolower($name) . '@gymgmunden.at',
             'password' => Hash::make($pw),
             'firstLogin' => true,
+            'active' => true,
         ]);
     }
 

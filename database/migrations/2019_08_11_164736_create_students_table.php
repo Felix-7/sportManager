@@ -21,7 +21,6 @@ class CreateStudentsTable extends Migration
             $table->string('gender');
             $table->dateTime('birth');
             $table->string('group')->nullable();
-            $table->string('teacher')->nullable();
             $table->boolean('active');
             $table->bigIncrements('id');
             $table->integer('tempValue')->nullable();

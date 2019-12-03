@@ -18,6 +18,7 @@ class TeachersTableSeeder extends Seeder
             'email' => 'f.kainz@gymgmunden.at',
             'password' => Hash::make('VWA_Sport@2019'),
             'firstLogin' => false,
+            'active' => true,
         ]);
     }
 }

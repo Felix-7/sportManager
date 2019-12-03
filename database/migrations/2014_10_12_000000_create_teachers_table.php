@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('firstLogin');
             $table->string('password');
+            $table->boolean('active');
             $table->rememberToken();
             $table->timestamps();
 
