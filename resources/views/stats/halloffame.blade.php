@@ -20,10 +20,10 @@
         <input type="hidden" name="limit" value="{{$limit}}">
         <div class="form-row my-3">
             <div class="col-6">
-                <button type="submit" name="useAge" value="1" class="btn btn-secondary btn-lg btn-block" >Alter</button>
+                <button type="submit" name="useAge" value="1" class="btn btn-secondary btn-lg btn-block" >Maximales Alter</button>
             </div>
             <div class="col-6">
-                <button type="submit" name="useAge" value="0" class="btn btn-secondary btn-lg btn-block" >Schulstufe</button>
+                <button type="submit" name="useAge" value="0" class="btn btn-secondary btn-lg btn-block" >Schulstufe / Klasse</button>
             </div>
         </div>
 
@@ -38,9 +38,9 @@
     <thead>
         <tr>
             <th scope="col">Name</th>
+            <th scope="col">Wert</th>
             <th scope="col">Klasse</th>
             <th scope="col">Alter</th>
-            <th scope="col">Wert</th>
             <th scope="col">Datum</th>
         </tr>
     </thead>
@@ -56,6 +56,10 @@
         @endforeach
     </tbody>
 </table>
+
+<div class="container text-center">
+    <a href="{{route('stats.download', ['discipline_id' => $discipline->id, 'mode' => $mode, 'gender' => $gender, 'useAge' => -2, 'age' => -1, 'class' => -1, 'limit' => $limit, 'upper' => -1])}}" class="btn btn-success ">PDF herunterladen</a>
+</div>
 
 
 

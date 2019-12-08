@@ -19,13 +19,16 @@ Route::get('/', 'HomeController@index')->name('home');
 //FROM HERE ON, ENTIRE APPLICATION HAS RESTRICTED ACCESS
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::post('/admin/listUpload', 'ListUploadController@store')->name('admin.list.upload');
+
 
 //MANAGEMENT OF THE APPLICATION
 
+    Route::post('/admin/listUpload', 'ListUploadController@store')->name('admin.list.upload');
     Route::view('/admin/upload', 'admin.settings')->name('admin');
     Route::get('/admin/accounts', 'AccountsController@resetPasswords')->name('admin.accounts');
     Route::get('/admin/{id}/reset', 'AccountsController@resetThisAccount')->name('admin.reset');
+    Route::get('/admin/{id}/suspend', 'AccountsController@suspendThisAccount')->name('admin.suspend');
+    Route::get('/admin/{id}/activate', 'AccountsController@activateThisAccount')->name('admin.activate');
 
 //ENTRY ROUTES
 

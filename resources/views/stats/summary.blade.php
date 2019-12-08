@@ -17,9 +17,9 @@
     <thead>
         <tr>
             <th scope="col">Name</th>
+            <th scope="col">Wert</th>
             <th scope="col">Klasse</th>
             <th scope="col">Alter</th>
-            <th scope="col">Wert</th>
             <th scope="col">Datum</th>
         </tr>
     </thead>

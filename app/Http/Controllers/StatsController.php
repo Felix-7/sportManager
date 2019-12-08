@@ -178,10 +178,20 @@ class StatsController extends Controller
 
         //IF NOT DATE RESTRICTED
         if ($useDate == false) {
+            //GENERAL
+            if ($useAge == -2){
+                $result = Value::all()
+                    ->where('discipline_id', '=', $discipline_id)
+                    ->load('student')
+                    ->where('student.gender', '=', $gender);
+            }
             //SORT BY AGE
-
-            if ($useAge == 1) {
+            else if ($useAge == 1) {
                 $result = Value::where('discipline_id', '=', $discipline_id)
+                    ->with('student')
+                    ->whereHas('student', function ($q) use ($gender) {
+                        $q->where('gender', $gender);
+                    })
                     ->where('age', '<=', $age)
                     ->get();
             } //SORT BY CLASS
@@ -199,9 +209,21 @@ class StatsController extends Controller
         //IF DATE RESTRICTED
         else {
             $schoolyear = $this->getSchoolYear();
+            //GENERAL
+            if ($useAge == -2){
+                $result = Value::all()
+                    ->where('discipline_id', '=', $discipline_id)
+                    ->load('student')
+                    ->where('student.gender', '=', $gender)
+                    ->where('created_at', '>', $schoolyear);
+            }
             //SORT BY AGE
-            if ($useAge == 1) {
+            else if ($useAge == 1) {
                 $result = Value::query()
+                    ->with('student')
+                    ->whereHas('student', function ($q) use ($gender) {
+                        $q->where('gender', $gender);
+                    })
                     ->where('created_at', '>', $schoolyear)
                     ->where('discipline_id', '=', $discipline_id)
                     ->where('age', '<=', $age)
@@ -237,7 +259,7 @@ class StatsController extends Controller
     private function getSchoolYear(){
         $month = Carbon::now()->format('m');
         if($month >= 9)
-            $year = Carbon::now()->format('Y')+1;
+            $year = Carbon::now()->format('Y');
         else $year = Carbon::now()->format('Y')-1;
         return new Carbon($year . '-09-01 00:00:00');
     }

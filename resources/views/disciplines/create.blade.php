@@ -18,7 +18,7 @@
         <div class="col-12">
             <form action="{{route('disciplines.store')}}" method="POST" enctype="multipart/form-data">
                 @include('disciplines.form')
-                <button type="submit" class="btn btn-primary m-3">Add Discipline</button>
+                <button type="submit" class="btn btn-primary m-3">Disziplin hinzufügen</button>
             </form>
         </div>
     </div>

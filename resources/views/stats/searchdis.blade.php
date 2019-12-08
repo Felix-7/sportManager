@@ -54,7 +54,7 @@
                 <button type="submit" name="gender" class="btn btn-primary btn-lg btn-block" value="m">♂</button>
             </div>
             <div class="col-6">
-                <button type="submit" name="gender" class="btn btn-danger btn-lg btn-block" value="f">♀</button>
+                <button type="submit" name="gender" class="btn btn-danger btn-lg btn-block" value="w">♀</button>
             </div>
         </div>
 

@@ -13,14 +13,10 @@
     <div class="form-check form-check-inline">
         <input type="hidden" name="best_high" value="0">
         <input type="checkbox" name="best_high" @if($discipline->best_high == 1) checked @endif class="form-check-input" value="1">
-        <label class="form-check-label" for="best_high">Höher ist besser</label>
+        <label class="form-check-label" for="best_high">Höhere Werte sind besser</label>
     </div>
+    <input type="hidden" name="active" value="1">
 
-    <div class="form-check form-check-inline">
-        <input type="hidden" name="active" value="0">
-        <input type="checkbox" name="active" checked class="form-check-input" value="1">
-        <label class="form-check-label" for="active">Aktiv</label>
-    </div>
     <br>
 
 @csrf

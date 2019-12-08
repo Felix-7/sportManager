@@ -15,6 +15,7 @@
             <tr>
                 <th scope="col">eMail / Benutzer</th>
                 <th scope="col">Passwort zurücksetzen</th>
+                <th scope="col">Account suspendieren</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,8 @@
                 <tr>
                     <td>{{$teacher->email}}</td>
                     <td><a href="{{route('admin.reset', ['id' => $teacher->id])}}" class="btn btn-primary">Passwort von {{$teacher->name}} zurücksetzen</a></td>
+                    <td>@if($teacher->active == true)<a href="{{route('admin.suspend', ['id' => $teacher->id])}}" class="btn btn-danger">{{$teacher->name}} suspendieren</a>
+                    @else <a href="{{route('admin.activate', ['id' => $teacher->id])}}" class="btn btn-info">{{$teacher->name}} aktivieren</a> @endif</td>
                 </tr>
             @endforeach
 

@@ -2,7 +2,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('home')}}">home</a></li>
+        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{route('stats.select')}}">Modus</a></li>
         <li class="breadcrumb-item active" aria-current="page">Eingabe</li>
         <li class="ml-auto">SportManager</li>
@@ -10,7 +10,7 @@
 </nav>
 
 <div class="title text-center">
-    <h1>Suche nach @if($useAge == 1) Alter @else Schulstufe @endif</h1>
+    <h1>Suche nach @if($useAge == 1) Höchstalter @else Schulstufe @endif</h1>
 </div>
 
 
@@ -25,7 +25,7 @@
 
         @if($useAge == 1)
             <div class="form-group">
-                <input type="text" class="form-control" name="age" placeholder="Alter eingeben...">
+                <input type="text" class="form-control" name="age" placeholder="Höchstes erlaubtes Alter eingeben...">
             </div>
             <input type="hidden" name="class" value="-1">
         @else
