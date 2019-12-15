@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Discipline;
 use App\Student;
 use App\Value;
-use Barryvdh\DomPDF\Facade as PDF;
+use Elibyy\TCPDF\Facades\TCPDF as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +21,13 @@ class StatsController extends Controller
         $discipline = Discipline::where('id', '=', $discipline_id)->first();
         $orderedResult = $this->orderScores($result, $discipline_id);
         $orderedResult = $this->limitEntries($orderedResult, $limit);
-        $pdf = PDF::loadView('pdf', compact('orderedResult', 'discipline'));
-        return $pdf->download('result.pdf');
+        $view = \View::make('pdf', compact('orderedResult', 'discipline'));
+        $html_content = $view->render();
+        //PDF
+        PDF::setTitle("Gewünschte Liste");
+        PDF::addPage();
+        PDF::writeHTML($html_content, true, false, true, false, '');
+        PDF::Output('result.pdf', 'D');
 
     }
 

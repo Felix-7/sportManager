@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Teacher;
-use Barryvdh\DomPDF\Facade as PDF;
+use Elibyy\TCPDF\Facades\TCPDF as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -91,8 +91,13 @@ class ListUploadController extends Controller
                 }
             }
         }
-        $pdf = PDF::loadView('auth.passwordpdf', compact('login_data'));
-        return $pdf->download('passwords.pdf');
+        $view = \View::make('auth.passwordpdf', compact('login_data'));
+        $html_content = $view->render();
+        //PDF
+        PDF::setTitle("Passwords");
+        PDF::addPage();
+        PDF::writeHTML($html_content, true, false, true, false, '');
+        PDF::Output('passwords.pdf', 'D');
     }
 
     private function validateRequest(){

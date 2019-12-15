@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Discipline;
 use App\Student;
 use App\Value;
-use Barryvdh\DomPDF\Facade as PDF;
+use Elibyy\TCPDF\Facades\TCPDF as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -59,10 +59,15 @@ class ValuesController extends Controller
         $orderedResult = $this->orderScores($result, $disciplineId);
         $discipline = Discipline::where('id', '=', $disciplineId)->first();
 
-        $pdf = PDF::loadView('pdf', compact('orderedResult', 'discipline'));
-        Storage::put('latest/' . Auth::User()->name . '_LAST_RESULT.pdf', $pdf->output());
+        $view = \View::make('pdf', compact('orderedResult', 'discipline'));
+        $html_content = $view->render();
 
-        $pdf->download();
+        PDF::setTitle("Ergebnisse");
+        PDF::addPage();
+        PDF::writeHTML($html_content, true, false, true, false, '');
+        //Storage::put('latest/' . Auth::User()->name . '_LAST_RESULT.pdf', PDF::Output('result.pdf', 'F'));
+        $filename = Auth::User()->name . '_LAST_RESULT.pdf';
+        PDF::Output(storage_path('app/latest/') . $filename, 'F');
 
         return view('entry.wantPDF');
 
