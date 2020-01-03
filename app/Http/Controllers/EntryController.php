@@ -62,7 +62,7 @@ class EntryController extends Controller
     private function validateEntry(){
 
         return request()->validate([
-            'tempValue' => 'integer|nullable',
+            'tempValue' => 'numeric|nullable',
         ]);
     }
 
