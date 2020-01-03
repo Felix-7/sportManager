@@ -21,6 +21,14 @@ class ListUploadController extends Controller
         $request->groupList->storeAs('studentLists', 'groups.txt');
         $request->teacherList->storeAs('studentLists', 'teachers.txt');
 
+        //RESET GROUPS & STUDENTS
+        $students = Student::all();
+        foreach($students as $student){
+            $student->group = null;
+            $student->active = false;
+            $student->save;
+        }
+
         $file = fopen('../storage/app/studentLists/students.txt', 'r') or exit("Datei konnte nicht geöffnet werden!");
         $this->remove_utf8_bom($file);
         while(!feof($file)) {
@@ -44,12 +52,7 @@ class ListUploadController extends Controller
         $file = fopen('../storage/app/studentLists/groups.txt','r') or exit("Datei konnte nicht geöffnet werden!");
         $this->remove_utf8_bom($file);
 
-        //RESET GROUPS
-        $students = Student::all();
-        foreach($students as $student){
-            $student->group = null;
-            $student->save;
-        }
+
 
         //NEW GROUPS HERE
         while(!feof($file)){

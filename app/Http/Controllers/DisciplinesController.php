@@ -22,7 +22,6 @@ class DisciplinesController extends Controller
     public function index()
     {
         $disciplines = Discipline::all();
-
         return view('disciplines.index', compact('disciplines'));
     }
 

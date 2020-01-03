@@ -30,13 +30,13 @@ class EntryController extends Controller
     }
 
     public function nextEntry(Discipline $discipline, string $group, int $i, bool $skipFlag){
-        $studentList = Student::students($group)->get();
+        $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('name');
         $count = count($studentList);
 
         if($i != -1) {
             $studentList[$i]->update($this->validateEntry());
             if(++$i >= $count || $skipFlag == true){
-                $studentList = Student::students($group)->get();
+                $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('name');
                 $lastResults = Value::getLastResults($discipline->id, $studentList, 'value');
                 return view('entry.summary', compact( 'group','discipline', 'studentList', 'i', 'lastResults'));
             }
