@@ -42,7 +42,7 @@ class ListUploadController extends Controller
                     'surname' => $rawStudent[2],
                     'cur_class' => $rawStudent[0],
                     'gender' => $rawStudent[4],
-                    'birth' => $rawStudent[5],
+                    'birth' => date("Y-m-d", strtotime($rawStudent[5])),
                     'active' => true,
                 ]);
             }
