@@ -22,7 +22,7 @@
     <tbody>
     @foreach($studentList as $key => $student)
         <tr>
-            <td>{{$student->name}} {{$student->surname}}</td>
+            <td>{{$student->surname}} {{$student->name}}</td>
             <td>@if(is_null($student->tempValue)) N/A @else{{$student->tempValue}} {{$discipline->unit}}@endif</td>
             <td>@if($lastResults[$key] == -1) N/A @else{{$lastResults[$key]}} {{$discipline->unit}}@endif</td>
             <td><a href="{{route('entry.edit', ['discipline' => $discipline, 'group' => $group, 'i' => $key])}}">Edit</a></td>

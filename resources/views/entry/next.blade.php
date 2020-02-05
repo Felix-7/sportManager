@@ -4,13 +4,13 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">{{$discipline->name}}</li>
         <li class="breadcrumb-item">{{$group}}</li>
-        <li class="breadcrumb-item active" aria-current="page">{{$student->name}}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{$student->surname}}</li>
         <li class="ml-auto">SportManager</li>
     </ol>
 </nav>
 
 <div class="title text-center">
-    <h1>Datensatz für {{$student->name}} {{$student->surname}}</h1>
+    <h1>Datensatz für {{$student->surname}} {{$student->name}}</h1>
 </div>
 
 

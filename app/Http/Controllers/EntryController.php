@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class EntryController extends Controller
 {
     public function startEntries(Discipline $discipline, string $group){
-        $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('name');
+        $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('surname');
         $lastDate = Value::getLastResults($discipline->id, $studentList, 'datetime');
 
         $mostRecent= 0;
@@ -36,7 +36,7 @@ class EntryController extends Controller
         if($i != -1) {
             $studentList[$i]->update($this->validateEntry());
             if(++$i >= $count || $skipFlag == true){
-                $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('name');
+                $studentList = Student::students($group)->get()->sortBy('cur_class')->sortBy('surname');
                 $lastResults = Value::getLastResults($discipline->id, $studentList, 'value');
                 return view('entry.summary', compact( 'group','discipline', 'studentList', 'i', 'lastResults'));
             }

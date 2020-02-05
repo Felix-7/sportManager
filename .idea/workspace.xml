@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ac27dd19-9c86-405c-b24e-3ae9342b0702" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ListUploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ListUploadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EntryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EntryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/entry/action.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entry/action.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/entry/next.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entry/next.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/entry/summary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entry/summary.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +273,11 @@
       <workItem from="1577813353107" duration="2000000" />
       <workItem from="1578046294087" duration="4614000" />
       <workItem from="1579109223590" duration="601000" />
-      <workItem from="1579343043264" duration="1123000" />
+      <workItem from="1579343043264" duration="1364000" />
+      <workItem from="1580227516116" duration="257000" />
+      <workItem from="1580394547753" duration="6247000" />
+      <workItem from="1580639453937" duration="614000" />
+      <workItem from="1580923867004" duration="1104000" />
     </task>
     <servers />
   </component>
@@ -291,15 +298,15 @@
       <screen x="3840" y="0" width="1920" height="1040" />
     </state>
     <state x="4480" y="251" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1400/3840.0.1920.1040@3840.0.1920.1040" timestamp="1577813336494" />
-    <state x="988" y="529" key="com.intellij.ide.util.TipDialog" timestamp="1579343380110">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4581" y="393" key="com.intellij.ide.util.TipDialog" timestamp="1580923867317">
+      <screen x="3840" y="0" width="1920" height="1040" />
     </state>
-    <state x="988" y="529" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.1920.1040@0.0.2560.1400" timestamp="1579343380110" />
-    <state x="4581" y="393" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.1920.1040@3840.0.1920.1040" timestamp="1578046296224" />
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1579344057599">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="988" y="529" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.1920.1040@0.0.2560.1400" timestamp="1580394555063" />
+    <state x="4581" y="393" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.1920.1040@3840.0.1920.1040" timestamp="1580923867317" />
+    <state x="4463" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1580924942079">
+      <screen x="3840" y="0" width="1920" height="1040" />
     </state>
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400/3840.0.1920.1040@0.0.2560.1400" timestamp="1579344057599" />
-    <state x="4463" y="225" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/3840.0.1920.1040@3840.0.1920.1040" timestamp="1578050846466" />
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/0.0.2560.1400/3840.0.1920.1040@0.0.2560.1400" timestamp="1580227562532" />
+    <state x="4463" y="225" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/3840.0.1920.1040@3840.0.1920.1040" timestamp="1580924942079" />
   </component>
 </project>

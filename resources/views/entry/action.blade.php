@@ -30,7 +30,7 @@
         </thead>
         @foreach($studentList as $student)
             <tr>
-                <td>{{$student->name}} {{$student->surname}}</td>
+                <td>{{$student->surname}} {{$student->name}}</td>
                 <td>{{$rowCount++}}</td>
             </tr>
         @endforeach
