@@ -43,7 +43,7 @@ class Value extends Model
         return $lastResults;
     }
 
-    public static function generateValue(int $intVal, string $group, int $studentNr, int $disciplineId)
+    public static function generateValue(float $intVal, string $group, int $studentNr, int $disciplineId)
     {
         $studentList = Student::students($group)->get();
         $student = $studentList[$studentNr];
